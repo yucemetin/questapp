@@ -4,6 +4,10 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -16,11 +20,21 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    private Long userId;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @OnDelete(action = OnDeleteAction.CASCADE) // user silindiği zaman onun bütün postları da silinir.
+    private User user;
     private String title;
 
     @Lob
     @Column(columnDefinition = "text")
     private String text;
+
+    @OneToMany(mappedBy = "post")
+    private List<Comment> comments;
+
+    @OneToMany(mappedBy = "post")
+    private List<Like> likes;
 
 }
