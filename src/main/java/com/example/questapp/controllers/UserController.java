@@ -3,8 +3,11 @@ package com.example.questapp.controllers;
 import com.example.questapp.business.abstracts.UserService;
 import com.example.questapp.business.requests.CreateUserRequest;
 import com.example.questapp.business.requests.UpdateUserRequest;
+import com.example.questapp.business.responses.CreateUserResponse;
 import com.example.questapp.business.responses.GetAllUsersResponse;
 import com.example.questapp.business.responses.GetUserByIdResponse;
+import com.example.questapp.business.responses.UpdateUserResponse;
+import com.example.questapp.entities.User;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -29,12 +32,12 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Long createUser(@RequestBody CreateUserRequest createUserRequest) {
+    public CreateUserResponse createUser(@RequestBody CreateUserRequest createUserRequest) {
         return this.userService.createUser(createUserRequest);
     }
 
     @PutMapping
-    public Long updateUser(@RequestBody UpdateUserRequest updateUserRequest) {
+    public UpdateUserResponse updateUser(@RequestBody UpdateUserRequest updateUserRequest) {
         return this.userService.updateUser(updateUserRequest);
     }
 
