@@ -37,8 +37,8 @@ public class UserController {
     }
 
     @PutMapping
-    public UpdateUserResponse updateUser(@RequestBody UpdateUserRequest updateUserRequest) {
-        return this.userService.updateUser(updateUserRequest);
+    public UpdateUserResponse updateUser(@RequestBody UpdateUserRequest updateUserRequest, @PathVariable Long id) {
+        return this.userService.updateUser(updateUserRequest, id);
     }
 
     @DeleteMapping("/{id}")

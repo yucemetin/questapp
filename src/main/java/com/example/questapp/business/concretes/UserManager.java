@@ -44,7 +44,8 @@ public class UserManager implements UserService {
     }
 
     @Override
-    public UpdateUserResponse updateUser(UpdateUserRequest updateUserRequest) {
+    public UpdateUserResponse updateUser(UpdateUserRequest updateUserRequest, Long id) {
+        this.userRepository.findById(id).orElseThrow();
         User user = this.modelMapperService.forRequest().map(updateUserRequest, User.class);
         this.userRepository.save(user);
         return this.modelMapperService.forResponse().map(user, UpdateUserResponse.class);
