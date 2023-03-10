@@ -1,13 +1,13 @@
-package com.example.questapp.business.responses;
+package com.example.questapp.business.responses.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class CreateUserResponse {
+@AllArgsConstructor
+public class GetAllUsersResponse {
     private Long id;
     private String userName;
 

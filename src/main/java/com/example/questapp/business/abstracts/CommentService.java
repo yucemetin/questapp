@@ -2,10 +2,10 @@ package com.example.questapp.business.abstracts;
 
 import com.example.questapp.business.requests.CreateCommentRequest;
 import com.example.questapp.business.requests.UpdateCommentRequest;
-import com.example.questapp.business.responses.CreateCommentResponse;
-import com.example.questapp.business.responses.GetAllCommentsResponse;
-import com.example.questapp.business.responses.GetCommentByIdResponse;
-import com.example.questapp.business.responses.UpdateCommentResponse;
+import com.example.questapp.business.responses.comment.CreateCommentResponse;
+import com.example.questapp.business.responses.comment.GetAllCommentsResponse;
+import com.example.questapp.business.responses.comment.GetCommentByIdResponse;
+import com.example.questapp.business.responses.comment.UpdateCommentResponse;
 
 import java.util.List;
 import java.util.Optional;

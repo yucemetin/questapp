@@ -1,15 +1,15 @@
-package com.example.questapp.business.responses;
+package com.example.questapp.business.responses.comment;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class CreatePostResponse {
+@AllArgsConstructor
+public class UpdateCommentResponse {
     private Long id;
     private Long userId;
-    private String title;
+    private Long postId;
     private String text;
 }

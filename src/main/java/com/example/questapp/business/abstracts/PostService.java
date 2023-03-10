@@ -2,10 +2,10 @@ package com.example.questapp.business.abstracts;
 
 import com.example.questapp.business.requests.CreatePostRequest;
 import com.example.questapp.business.requests.UpdatePostRequest;
-import com.example.questapp.business.responses.CreatePostResponse;
-import com.example.questapp.business.responses.GetAllPostResponse;
-import com.example.questapp.business.responses.GetPostByIdResponse;
-import com.example.questapp.business.responses.UpdatePostResponse;
+import com.example.questapp.business.responses.post.CreatePostResponse;
+import com.example.questapp.business.responses.post.GetAllPostResponse;
+import com.example.questapp.business.responses.post.GetPostByIdResponse;
+import com.example.questapp.business.responses.post.UpdatePostResponse;
 
 import java.util.List;
 import java.util.Optional;

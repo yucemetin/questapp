@@ -9,7 +9,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UpdateCommentRequest {
     private Long id;
-    private Long userId;
-    private Long postId;
     private String text;
 }

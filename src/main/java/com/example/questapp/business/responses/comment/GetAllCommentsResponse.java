@@ -1,4 +1,4 @@
-package com.example.questapp.business.requests;
+package com.example.questapp.business.responses.comment;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,8 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UpdatePostRequest {
+public class GetAllCommentsResponse {
     private Long id;
-    private String title;
+    private Long userId;
+    private Long postId;
     private String text;
 }

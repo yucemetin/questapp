@@ -1,4 +1,4 @@
-package com.example.questapp.business.responses;
+package com.example.questapp.business.responses.post;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class GetPostByIdResponse {
-
+public class CreatePostResponse {
     private Long id;
     private Long userId;
     private String title;
