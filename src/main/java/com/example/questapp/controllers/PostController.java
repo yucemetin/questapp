@@ -16,6 +16,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/v1/posts")
 @AllArgsConstructor
+@CrossOrigin
 public class PostController {
 
     private PostService postService;

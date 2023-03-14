@@ -14,6 +14,7 @@ import java.util.Optional;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/v1/likes")
+@CrossOrigin
 public class LikeController {
     private LikeService likeService;
 

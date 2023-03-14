@@ -46,13 +46,15 @@ public class PostManager implements PostService {
     public CreatePostResponse createPost(CreatePostRequest createPostRequest) {
         Post post = this.modelMapperService.forRequest().map(createPostRequest, Post.class);
         this.postRepository.save(post);
-        return this.modelMapperService.forResponse().map(post, CreatePostResponse.class);
+        CreatePostResponse postResponse = this.modelMapperService.forResponse().map(post, CreatePostResponse.class);
+        return postResponse;
     }
 
     @Override
     public UpdatePostResponse updatePost(UpdatePostRequest updatePostRequest, Long id) {
-        this.postRepository.findById(id).orElseThrow();
+        Post oldPost = this.postRepository.findById(id).orElseThrow();
         Post post = this.modelMapperService.forRequest().map(updatePostRequest, Post.class);
+        post.setUser(oldPost.getUser());
         this.postRepository.save(post);
         return this.modelMapperService.forResponse().map(post, UpdatePostResponse.class);
     }
