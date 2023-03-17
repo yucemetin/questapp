@@ -12,6 +12,7 @@ import java.util.Date;
 public class GetAllPostResponse {
     private Long id;
     private Long userId;
+    private String userName;
     private String title;
     private String text;
     private Date createdOn;

@@ -24,7 +24,7 @@ public class Post {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     @OnDelete(action = OnDeleteAction.CASCADE) // user silindiği zaman onun bütün postları da silinir.
     private User user;
