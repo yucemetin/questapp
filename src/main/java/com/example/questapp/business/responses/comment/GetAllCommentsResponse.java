@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class GetAllCommentsResponse {
     private Long id;
     private Long userId;
+    private String userName;
     private Long postId;
     private String text;
 }

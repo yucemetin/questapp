@@ -1,5 +1,6 @@
 package com.example.questapp.business.concretes;
 
+import com.example.questapp.business.abstracts.LikeService;
 import com.example.questapp.business.abstracts.PostService;
 import com.example.questapp.business.requests.CreatePostRequest;
 import com.example.questapp.business.requests.UpdatePostRequest;
@@ -21,17 +22,28 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class PostManager implements PostService {
     private PostRepository postRepository;
+    private LikeService likeService;
     private ModelMapperService modelMapperService;
 
     @Override
     public List<GetAllPostResponse> getAll(Optional<Long> userId) {
         if (userId.isPresent()) {
             List<Post> posts = this.postRepository.findByUserId(userId.get());
-            List<GetAllPostResponse> getAllPostResponses = posts.stream().map(post -> this.modelMapperService.forResponse().map(post, GetAllPostResponse.class)).collect(Collectors.toList());
+            List<GetAllPostResponse> getAllPostResponses = posts.stream().map(post -> {
+                GetAllPostResponse response =  this.modelMapperService.forResponse().map(post, GetAllPostResponse.class);
+                response.setPostLikes(this.likeService.getAll(Optional.ofNullable(null),Optional.of(post.getId())));
+                return response;
+            }).collect(Collectors.toList());
             return getAllPostResponses;
+
         } else {
             List<Post> posts = this.postRepository.findAll();
-            List<GetAllPostResponse> getAllPostResponses = posts.stream().map(post -> this.modelMapperService.forResponse().map(post, GetAllPostResponse.class)).collect(Collectors.toList());
+            List<GetAllPostResponse> getAllPostResponses = posts.stream().map(post -> {
+               GetAllPostResponse response =  this.modelMapperService.forResponse().map(post, GetAllPostResponse.class);
+               response.setPostLikes(this.likeService.getAll(Optional.ofNullable(null),Optional.of(post.getId())));
+               return response;
+            }).collect(Collectors.toList());
+
             return getAllPostResponses;
         }
     }
