@@ -57,4 +57,8 @@ public class UserManager implements UserService {
         this.userRepository.deleteById(id);
         return user.getId();
     }
+
+    public User getOneUserByUserName(String username) {
+        return this.userRepository.findByUserName(username);
+    }
 }

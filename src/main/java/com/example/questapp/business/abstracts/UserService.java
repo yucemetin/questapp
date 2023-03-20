@@ -6,6 +6,7 @@ import com.example.questapp.business.responses.user.CreateUserResponse;
 import com.example.questapp.business.responses.user.GetAllUsersResponse;
 import com.example.questapp.business.responses.user.GetUserByIdResponse;
 import com.example.questapp.business.responses.user.UpdateUserResponse;
+import com.example.questapp.entities.User;
 
 import java.util.List;
 
@@ -20,5 +21,7 @@ public interface UserService {
     UpdateUserResponse updateUser(UpdateUserRequest updateUserRequest, Long id);
 
     Long deleteUser(Long id);
+
+    User getOneUserByUserName(String username);
 
 }
