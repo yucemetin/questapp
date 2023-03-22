@@ -3,6 +3,8 @@ package com.example.questapp.controllers;
 import com.example.questapp.business.abstracts.UserService;
 import com.example.questapp.business.requests.CreateUserRequest;
 import com.example.questapp.business.requests.LoginUserRequest;
+import com.example.questapp.business.responses.auth.AuthResponse;
+import com.example.questapp.entities.User;
 import com.example.questapp.security.JwtTokenProvider;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,23 +28,25 @@ public class AuthController {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping("/login")
-    public String login(@RequestBody LoginUserRequest loginRequest) {
+    public AuthResponse login(@RequestBody LoginUserRequest loginRequest) {
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(loginRequest.getUserName(), loginRequest.getPassword());
         Authentication auth = authenticationManager.authenticate(authToken);
         SecurityContextHolder.getContext().setAuthentication(auth);
-        return "Bearer " + jwtTokenProvider.generateJwtToken(auth);
+        String jwtToken = "Bearer " + jwtTokenProvider.generateJwtToken(auth);
+        User user = userService.getOneUserByUserName(loginRequest.getUserName());
+        return new AuthResponse(user.getId(), jwtToken);
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody LoginUserRequest userRequest) {
+    public ResponseEntity<AuthResponse> register(@RequestBody LoginUserRequest userRequest) {
         if (this.userService.getOneUserByUserName(userRequest.getUserName()) != null) {
-            return new ResponseEntity<>("Username already in use", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new AuthResponse(null, "Username already in use"), HttpStatus.BAD_REQUEST);
         }
 
         CreateUserRequest user = new CreateUserRequest();
         user.setUserName(userRequest.getUserName());
         user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
         this.userService.createUser(user);
-        return new ResponseEntity<>("User successfully registered", HttpStatus.CREATED);
+        return new ResponseEntity<>(new AuthResponse(this.userService.getOneUserByUserName(user.getUserName()).getId(), "User successfully registered"), HttpStatus.CREATED);
     }
 }
