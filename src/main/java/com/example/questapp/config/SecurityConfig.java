@@ -61,7 +61,7 @@ public class SecurityConfig {
         config.addAllowedMethod("POST");
         config.addAllowedMethod("DELETE");
         config.addAllowedMethod("PATCH");
-        config.setAllowedOrigins(List.of("http://localhost:3006"));
+        config.setAllowedOrigins(List.of("http://localhost:3007"));
         config.setAllowedOriginPatterns(Collections.singletonList("*"));
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);

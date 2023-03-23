@@ -57,6 +57,7 @@ public class PostManager implements PostService {
     @Override
     public CreatePostResponse createPost(CreatePostRequest createPostRequest) {
         Post post = this.modelMapperService.forRequest().map(createPostRequest, Post.class);
+        post.setId(null);
         this.postRepository.save(post);
         CreatePostResponse postResponse = this.modelMapperService.forResponse().map(post, CreatePostResponse.class);
         return postResponse;
